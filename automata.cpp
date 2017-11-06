@@ -39,7 +39,7 @@ inline bool exists_test (const string& name)
 
 int check(int state,char value)
 {
-	//cout <<"state: "<< state<<" value:"<<value<<endl;
+	cout <<"state: "<< state<<" value:"<<value<<endl;
 	for (int i = 0; i < numOfSymbol; ++i)
 	{
 		if(value == symbols[i])
@@ -192,20 +192,33 @@ int main(int argc, char const *argv[])
 
 	 }
 
+	 //cout<<"Return state : "<<rules[init]<<endl;
+	 bool test = false;
 	 for (int i = 0; i < cnt1; ++i)
 	 {
-	 	if (rules[init] == finalState[i])
+	 	//cout<<"Final state Check: "<<finalState[i]<<endl<<"Return : "<<rules[init]<<endl;
+	 	//if (rules[init] == finalState[i])
+	 	if (!finalState[i].compare(rules[init]))
 	 	{
-	 		cout <<"The state is  : "<< rules[init] <<" and it's a final state. So, ";
-	 		cout<<"Accepted.!!"<<endl;
+	 		test = true;
 	 		break;
 	 	}
 	 	else
 	 	{
-	 		cout<<"Sorry.!! Not accepted.!!"<<endl;
-	 		break;
+	 		test = false;
+
 	 	}
 	 }	
+	 if (test == true)
+	 {
+	 	cout <<"The state is  : "<< rules[init] <<" and it's a final state. So, ";
+	 	cout<<"Accepted.!!\n"<<endl;
+	 }
+	 else
+	 {
+	 	cout <<"The state is  : "<< rules[init] <<" and it's not a final state. So, ";
+	 	cout<<"Sorry.!! Not accepted.!!\n"<<endl;
+	 }
 
 	ReadFile.close();
 	return 0;

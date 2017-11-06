@@ -39,7 +39,7 @@ inline bool exists_test (const string& name)
 
 int check(int state,char value)
 {
-	cout <<"state: "<< state<<" value:"<<value<<endl;
+	//cout <<"state: "<< state<<" value:"<<value<<endl;
 	for (int i = 0; i < numOfSymbol; ++i)
 	{
 		if(value == symbols[i])

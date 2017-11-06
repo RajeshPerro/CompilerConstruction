@@ -1,17 +1,19 @@
 <<<---Sysmbols for our machine--->>>
-a b c
+a b
 <<<---Number of State--->>>
-10
+11
 <<<---Final states--->>>
-s4 s5 s6
+s3 s4 s5 s8 s9 s10
 <<<---Rules of our machine--->>>
-s0 s1 s2 s3
-s1 s1 s4 s4
-s2 s5 s2 s5
-s3 s6 s6 s3
-s4 s7 s4 s4
-s5 s5 s8 s5
-s6 s6 s6 s9
-s7 s7 s4 s4
-s8 s5 s8 s5
-s9 s6 s6 s9
+s0 s1 s2
+s1 s3 s6
+s2 s10 s2
+s3 s3 s4
+s4 s5 s8
+s5 s9 s8
+s6 s10 s7
+s7 s7 s7
+s8 s7 s8
+s9 s9 s7
+s10 s9 s8
+

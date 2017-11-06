@@ -4,7 +4,8 @@
 #include "stdlib.h"
 #include "fstream"
 #include "limits"
-#include <cstdlib>
+#include "sys/stat.h"
+#include "unistd.h"
 
 using namespace std;
 
@@ -25,17 +26,27 @@ string *rules;
 string *nameOfstates;
 int numOfState;
 string fileName;
+bool fileExist;
+inline bool exists_test (const string& name) 
+{
+    if (FILE *file = fopen(name.c_str(), "r")) {
+        fclose(file);
+        return true;
+    } else {
+        return false;
+    }   
+}
 
 int check(int state,char value)
 {
 	//cout <<"state: "<< state<<" value:"<<value<<endl;
-
-	if(value == symbols[0])
-		return state+1;
-	else if(value == symbols[1])
-		return state+2;
-	else if(value == symbols[2])
-		return state+3;
+	for (int i = 0; i < numOfSymbol; ++i)
+	{
+		if(value == symbols[i])
+		return state+(i+1);
+	
+	}
+	
 }	
 
 int main(int argc, char const *argv[])
@@ -55,7 +66,12 @@ int main(int argc, char const *argv[])
 	cout<<"Please Give the Source File name : ";
 	cin>>fileName;
 	sourceFileName = fileName.append(".txt");
-
+	fileExist = exists_test(sourceFileName);
+	if (!fileExist)
+	{
+		cout<<"Sorry this file doesn't exists check the file name\n"<<endl;
+		exit(0);
+	}
 	ReadFile.open(sourceFileName);
 
 	/*<<<-- Reading 1st line that menas symbols for our machine from our input text file-->>>*/
@@ -154,7 +170,7 @@ int main(int argc, char const *argv[])
 	 for(int x = 0,j=0; x<numOfState; x++)
 	 {
 	 	rong[ff++] = j;
-	 	j+=4;
+	 	j+=(numOfSymbol+1);
 	 }
 
 	 
@@ -173,9 +189,6 @@ int main(int argc, char const *argv[])
 	 			break;
 	 		}
 	 	}
-
-
-	 	
 
 	 }
 
